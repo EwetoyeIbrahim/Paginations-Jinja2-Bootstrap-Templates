@@ -1,0 +1,55 @@
+<!--    1 2 ... 3000                for page 1
+        1 2 3 ... 3000              for page 2
+        1 2 3 4 ... 3000            for page 3
+        1 ... 95 96 97 ... 3000     for page 96
+        1 ... 2997 2998 2999 3000   for page 2998
+        1 ... 2998 2999 3000        for page 2999
+        1 ... 2999 3000             for page 3000
+-->
+
+<ul class="list-inline">    
+    <!-- 1 and previous page; the current page -->
+    {% if entries_list.has_prev %}
+        <!-- Always display the first page -->
+        <li class="list-inline-item btn-sm btn-secondary" >
+            <a class="text-light" href="{{ url_for('accounting.invoices', page=1) }}">1</a>
+        </li>
+        {% if entries_list.prev_num > 2 %}
+            <li class="list-inline-item" >
+                <span>…</span>
+            </li> 
+        {% endif %}
+        {% if entries_list.prev_num > 1 %}
+            <li class="list-inline-item btn-sm btn-secondary" >
+                <a class="text-light" href="{{ url_for('accounting.invoices', page=entries_list.prev_num) }}">{{entries_list.prev_num}}</a>
+            </li>
+        {% endif %}
+        <li class="list-inline-item btn-sm btn-secondary active">
+            <a class="text-light" href="#">{{ entries_list.page }}</a>
+        </li>
+    {% else %}
+        <li class="list-inline-item btn-sm btn-secondary active" >
+            <a class="text-light" href="{{ url_for('accounting.invoices', page=entries_list.page) }}">{{entries_list.page}}</a>
+        </li>
+    {% endif %}
+
+    <!-- next page; ellipses; last page -->
+    {% if entries_list.has_next %}
+        <li class="list-inline-item btn-sm btn-secondary" >
+            <a class="text-light" href="{{ url_for('accounting.invoices', page=entries_list.next_num) }}">{{entries_list.next_num}}</a>
+        </li>
+
+        {% if (entries_list.pages - entries_list.next_num) > 2 %}
+            <li class="list-inline-item" >
+                <span>…</span>
+            </li>
+        {% endif %}
+        {% if (entries_list.pages - entries_list.next_num) >= 1 %}
+        <li class="list-inline-item btn-sm btn-secondary" >
+            <a class="text-light" href="{{ url_for('accounting.invoices', page=entries_list.pages) }}">{{entries_list.pages}}</a>
+        </li>
+        {% endif %}
+
+    {% endif %}
+
+</ul>
