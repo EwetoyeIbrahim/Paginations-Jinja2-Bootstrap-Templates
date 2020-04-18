@@ -40,7 +40,7 @@ This is a collection bootstraped jinja 2 pagination templates.
     </table>
     Though two colour versions of paginationStyle1 are provided here, but they can alway be changed using bootstrap clases.
 
-    a. paginationStyle1-Success uses a green background 
+    a. paginationStyle1-Success uses a green background  
     ![pg1of14915.JPG](/images/pg1of14915.JPG)  
     ![pg2of14915.JPG](/images/pg2of14915.JPG)  
     ![pg3of14915.JPG](/images/pg3of14915.JPG)  
